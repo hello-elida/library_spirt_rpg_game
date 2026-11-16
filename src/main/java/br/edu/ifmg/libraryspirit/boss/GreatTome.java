@@ -9,16 +9,14 @@ import java.util.List;
 
 /**
  * Representa o Grande Tomo, chefe final do jogo.
- *
  * O confronto possui três etapas:
  * Terror, Aventura e Ficção Científica.
- *
  * Cada etapa possui três ameaças e exige
  * uma página mágica correspondente.
  */
-public class GreatThome {
+public class GreatTome {
 
-    /** Armazena as etapas do chefe final
+    /**Armazena as etapas do chefe final
      *
      */
     private List<SealingStage> stages;
@@ -26,9 +24,13 @@ public class GreatThome {
     /**
      * Inicializa as três etapas do Grande Tomo.
      */
-    public GreatThome() {
+    private  int currentStageIndex = 0;
 
-        // Inicializa a lista de etapas
+    public GreatTome() {
+
+        /** Inicializa a lista de etapas
+
+         */
         stages = new ArrayList<>();
 
 
@@ -37,7 +39,7 @@ public class GreatThome {
          */
 
 
-        /** Lista de ameaças de Terror
+        /**Lista de ameaças de Terror
          *
          */
         List<Threat> horrorThreats = new ArrayList<>();
@@ -81,12 +83,7 @@ public class GreatThome {
         stages.add(terrorStage);
 
         /** ETAPA 2 - AVENTURA
-         *
-         */
-
-
-        /** Lista de ameaças de Aventura
-         *
+         * Lista de ameaças de Aventura
          */
         List<Threat> adventureThreats = new ArrayList<>();
 
@@ -107,7 +104,6 @@ public class GreatThome {
         ));
 
         /** Terceira ameaça
-         *
          */
         adventureThreats.add(new Threat(
                 "Uma criatura surge no caminho.",
@@ -130,17 +126,12 @@ public class GreatThome {
 
 
         /** ETAPA 3 - FICÇÃO CIENTÍFICA
-         *
+         * Lista de ameaças de Ficção Científica
          */
 
-
-        /** Lista de ameaças de Ficção Científica
-         *
-         */
         List<Threat> sciFiThreats = new ArrayList<>();
 
         /** Primeira ameaça
-         *
          */
         sciFiThreats.add(new Threat(
                 "Um robô dispara um raio de energia.",
@@ -148,8 +139,8 @@ public class GreatThome {
         ));
 
         /** Segunda ameaça
-         *
          */
+
         sciFiThreats.add(new Threat(
                 "Um drone sobrevoa o corredor.",
                 "abaixar"
@@ -172,7 +163,7 @@ public class GreatThome {
                 "ficcao"
         );
 
-        /** Adiciona Ficção Científica à lista
+        /* Adiciona Ficção Científica à lista
          *
          */
         stages.add(sciFiStage);
@@ -181,10 +172,41 @@ public class GreatThome {
     /**
      * Retorna as três etapas do chefe final
      * na ordem em que devem ser enfrentadas.
-     *
      * @return lista das etapas do Grande Tomo
      */
     public List<SealingStage> getStages() {
         return stages;
+    }
+    /**
+     * Retorna a etapa atual do chefe.
+     *
+     * @return etapa atual ou null quando todas terminarem
+     */
+    public SealingStage getCurrentStage() {
+        if (currentStageIndex >= stages.size()) {
+            return null;
+        }
+
+        return stages.get(currentStageIndex);
+    }
+
+    /**
+     * Avança para a próxima etapa do chefe.
+     */
+    public void advanceStage() {
+        if (currentStageIndex < stages.size()) {
+            currentStageIndex++;
+        }
+    }
+
+    /*
+     * Reinicia o chefe na primeira etapa.
+     */
+    public void resetStages() {
+        currentStageIndex = 0;
+
+        for (SealingStage stage : stages) {
+            stage.resetRounds();
+        }
     }
 }
