@@ -63,14 +63,16 @@ public class DodgeCommand implements Command {
 
                 if (bossThreat.isCorrect(action)) {
                     stage.advanceRound();
-                    output.println("Você escapou da ameaça do Grande Tomo!");
 
                     if (stage.hasActiveThreat()) {
                         output.println(stage.getCurrentThreat().getDescription());
-                        output.println("Reaja: desviar, pular, abaixar ou esconder.");
                     } else {
-                        output.println("Você superou as três ameaças!");
-                        output.println("Agora use a página mágica correspondente.");
+                        output.println(
+                                "Você escapou por um triz!\n"
+                                        + "A página mágica começa a brilhar em suas mãos.\n"
+                                        + "A ameaça foi superada.\n"
+                                        + "Agora use a página correspondente para restaurar o selo!"
+                        );
                     }
 
                 } else if (player.takeDamage()) {

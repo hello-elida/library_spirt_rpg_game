@@ -1,4 +1,3 @@
-
 package br.edu.ifmg.libraryspirit.boss;
 
 import br.edu.ifmg.libraryspirit.characters.Threat;
@@ -9,209 +8,158 @@ import java.util.List;
 
 /**
  * Representa o Grande Tomo, chefe final do jogo.
+ *
  * O confronto possui três etapas:
  * Terror, Aventura e Ficção Científica.
- * Cada etapa possui três ameaças e exige
+ *
+ * Cada etapa possui uma ameaça e exige
  * uma página mágica correspondente.
  */
 public class GreatTome {
 
-    /**Armazena as etapas do chefe final
-     *
-     */
     private List<SealingStage> stages;
+
+    private int currentStageIndex = 0;
 
     /**
      * Inicializa as três etapas do Grande Tomo.
      */
-    private  int currentStageIndex = 0;
-
     public GreatTome() {
 
-        /** Inicializa a lista de etapas
-
-         */
         stages = new ArrayList<>();
 
+        // ETAPA 1 - TERROR: O ABISMO
 
-        /** ETAPA 1 - TERROR
-         *
-         */
-
-
-        /**Lista de ameaças de Terror
-         *
-         */
         List<Threat> horrorThreats = new ArrayList<>();
 
-        /** Primeira ameaça
-         *
-         */
         horrorThreats.add(new Threat(
-                "Sombras surgem entre as estantes.",
-                "esconder"
-        ));
+                "Um silêncio estranho toma conta da biblioteca.\n"
+                        + "De repente, as páginas do Grande Tomo\n"
+                        + "começam a virar sozinhas.\n"
+                        + "\"Três histórias foram corrompidas.\n"
+                        + "Três páginas deverão restaurar o equilíbrio.\n"
+                        + "Mas será você capaz de enfrentar\n"
+                        + "o que existe dentro delas?\"\n\n"
 
-        /** Segunda ameaça
-         *
-         */
-        horrorThreats.add(new Threat(
-                "Livros voam em sua direção.",
-                "desviar"
-        ));
-
-        /** Terceira ameaça
-         *
-         */
-        horrorThreats.add(new Threat(
-                "Uma sombra bloqueia a passagem.",
+                        + "Uma gargalhada sombria ecoa pela biblioteca.\n"
+                        + "O chão começa a rachar sob seus pés!\n"
+                        + "Das profundezas, uma escuridão parece\n"
+                        + "querer engolir tudo ao redor.\n\n"
+                        + "O chão está desmoronando!\n"
+                        + "Reaja antes que seja tarde!",
                 "pular"
         ));
 
-        /** Cria a etapa de Terror
-         *
-         */
         SealingStage terrorStage = new SealingStage(
                 Theme.HORROR,
                 horrorThreats,
                 "terror"
         );
 
-        /** Adiciona Terror à lista de etapas
-         *
-         */
         stages.add(terrorStage);
 
-        /** ETAPA 2 - AVENTURA
-         * Lista de ameaças de Aventura
-         */
+        // ETAPA 2 - AVENTURA: O MAPA IMPOSSÍVEL
+
         List<Threat> adventureThreats = new ArrayList<>();
 
-        /** Primeira ameaça
-         *
-         */
         adventureThreats.add(new Threat(
-                "Uma pedra gigante rola em sua direção.",
+                "AVENTURA - O MAPA IMPOSSÍVEL\n\n"
+                        + "Mas a tranquilidade dura pouco...\n"
+                        + "Um mapa antigo se desenrola no ar.\n"
+                        + "Montanhas, oceanos e cidades surgem\n"
+                        + "em suas linhas encantadas.\n"
+                        + "De repente, os caminhos se embaralham!\n"
+                        + "Uma muralha de pergaminhos se ergue\n"
+                        + "e avança como uma onda pelo salão.\n\n"
+                        + "Ela está prestes a atingir você!\n"
+                        + "Reaja!",
                 "desviar"
         ));
 
-        /** Segunda ameaça
-         *
-         */
-        adventureThreats.add(new Threat(
-                "Uma armadilha se abre no chão.",
-                "pular"
-        ));
-
-        /** Terceira ameaça
-         */
-        adventureThreats.add(new Threat(
-                "Uma criatura surge no caminho.",
-                "esconder"
-        ));
-
-        /** Cria a etapa de Aventura
-         *
-         */
         SealingStage adventureStage = new SealingStage(
                 Theme.ADVENTURE,
                 adventureThreats,
                 "aventura"
         );
 
-        /** Adiciona Aventura à lista de etapas
-         *
-         */
         stages.add(adventureStage);
 
-
-        /** ETAPA 3 - FICÇÃO CIENTÍFICA
-         * Lista de ameaças de Ficção Científica
-         */
+        // ETAPA 3 - FICÇÃO CIENTÍFICA:
+        // A ANOMALIA GRAVITACIONAL
 
         List<Threat> sciFiThreats = new ArrayList<>();
 
-        /** Primeira ameaça
-         */
         sciFiThreats.add(new Threat(
-                "Um robô dispara um raio de energia.",
-                "desviar"
-        ));
-
-        /** Segunda ameaça
-         */
-
-        sciFiThreats.add(new Threat(
-                "Um drone sobrevoa o corredor.",
+                "FICÇÃO CIENTÍFICA - A ANOMALIA GRAVITACIONAL\n\n"
+                        + "As luzes começam a piscar.\n"
+                        + "Um som metálico rompe o silêncio.\n"
+                        + "As letras se desprendem das páginas\n"
+                        + "e começam a flutuar pelo salão.\n\n"
+                        + "Uma voz metálica anuncia:\n"
+                        + "\"ANOMALIA GRAVITACIONAL DETECTADA!\"\n\n"
+                        + "O espaço ao seu redor se distorce.\n"
+                        + "Um arco de energia comprime o ar\n"
+                        + "e avança na altura da sua cabeça!\n\n"
+                        + "Reaja!",
                 "abaixar"
         ));
 
-        /** Terceira ameaça
-         *
-         */
-        sciFiThreats.add(new Threat(
-                "Uma barreira de energia surge no caminho.",
-                "pular"
-        ));
-
-        /** Cria a etapa de Ficção Científica
-         *
-         */
         SealingStage sciFiStage = new SealingStage(
                 Theme.SCI_FI,
                 sciFiThreats,
                 "ficcao"
         );
 
-        /* Adiciona Ficção Científica à lista
-         *
-         */
         stages.add(sciFiStage);
     }
 
     /**
-     * Retorna as três etapas do chefe final
-     * na ordem em que devem ser enfrentadas.
-     * @return lista das etapas do Grande Tomo
+     * Retorna as três etapas do chefe final.
      */
     public List<SealingStage> getStages() {
         return stages;
     }
+
     /**
-     * Retorna a etapa atual do chefe.
-     *
-     * @return etapa atual ou null quando todas terminarem
+     * Retorna a etapa atual ou null
+     * quando todas estiverem concluídas.
      */
     public SealingStage getCurrentStage() {
+
         if (currentStageIndex >= stages.size()) {
             return null;
         }
 
         return stages.get(currentStageIndex);
     }
+
     /**
-     * Verifica se todas as etapas do Grande Tomo terminaram.
-     *
-     * @return true se o chefe foi derrotado
+     * Verifica se o Grande Tomo foi derrotado.
      */
     public boolean isDefeated() {
         return currentStageIndex >= stages.size();
     }
 
     /**
-     * Avança para a próxima etapa do chefe.
+     * Avança para a próxima etapa quando
+     * a etapa atual estiver concluída.
      */
     public void advanceStage() {
+
         SealingStage currentStage = getCurrentStage();
-        if (currentStage != null && currentStage.isCompleted()) {
+
+        if (currentStage != null
+                && currentStage.isCompleted()) {
+
             currentStageIndex++;
         }
     }
 
-    /*
-     * Reinicia o chefe na primeira etapa.
+    /**
+     * Reinicia o confronto na primeira etapa.
      */
     public void resetStages() {
+
         currentStageIndex = 0;
 
         for (SealingStage stage : stages) {

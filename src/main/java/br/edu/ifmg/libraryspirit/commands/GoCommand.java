@@ -79,7 +79,6 @@ public class GoCommand implements Command {
             output.println("=== O GRANDE TOMO DESPERTOU! ===");
             output.println("Etapa atual: " + greatTome.getCurrentStage().getTheme());
             output.println(greatTome.getCurrentStage().getCurrentThreat().getDescription());
-            output.println("Reaja: desviar, pular, abaixar ou esconder.");
         }
 
         if (next.hasActiveThreat()) {
