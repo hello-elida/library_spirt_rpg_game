@@ -189,12 +189,21 @@ public class GreatTome {
 
         return stages.get(currentStageIndex);
     }
+    /**
+     * Verifica se todas as etapas do Grande Tomo terminaram.
+     *
+     * @return true se o chefe foi derrotado
+     */
+    public boolean isDefeated() {
+        return currentStageIndex >= stages.size();
+    }
 
     /**
      * Avança para a próxima etapa do chefe.
      */
     public void advanceStage() {
-        if (currentStageIndex < stages.size()) {
+        SealingStage currentStage = getCurrentStage();
+        if (currentStage != null && currentStage.isCompleted()) {
             currentStageIndex++;
         }
     }
